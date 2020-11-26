@@ -5,15 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "2605650857",
+    "hash" : "42073027",
     "id" : "F5A95850",
-    "lastKnownWriteTime" : 1606389236,
-    "last_content_update" : 1606389235063,
+    "lastKnownWriteTime" : 1606426298,
+    "last_content_update" : 1606426297777,
     "path" : "F:/dev/R/Labworks/lab2_script.R",
     "project_path" : "lab2_script.R",
     "properties" : {
-        "cursorPosition" : "83,59",
-        "scrollLine" : "70"
+        "cursorPosition" : "61,0",
+        "scrollLine" : "45"
     },
     "relative_order" : 2,
     "source_on_save" : false,
