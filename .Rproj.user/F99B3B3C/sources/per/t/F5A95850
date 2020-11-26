@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1606320822827.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2605650857",
+    "id" : "F5A95850",
+    "lastKnownWriteTime" : 1606389236,
+    "last_content_update" : 1606389235063,
+    "path" : "F:/dev/R/Labworks/lab2_script.R",
+    "project_path" : "lab2_script.R",
+    "properties" : {
+        "cursorPosition" : "83,59",
+        "scrollLine" : "70"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
