@@ -8,10 +8,8 @@ mydata
 
 ########## KOLMOGOROV-SMIRNOV TEST
 
-# Null hypothesis is that mydata distribution is normal
-# Alternative hypothesis is that mydata distribution is NOT normal
-
-#ul = mean(mydata) - 
+# Null hypothesis is that mydata distribution is NOT SO FAR from (normal/exp/gamma/unif/chi)
+# Alternative hypothesis is that mydata distribution is FAR from (normal/exp/gamma/unif/chi)
 
 alpha = 0.05
 N = length(mydata) # = 50
@@ -78,6 +76,10 @@ ks_val_print(chiksresult, "chisq dist") # D = test value = 0.35492
 
 coefficient_skew = sqrt((6*(N-2))/((N+1)*(N+3))) # = 0.3264173
 coefficient_kur = sqrt(((24*N)*(N-2)*(N-3))/((N+1)^2*(N+3)*(N+5))) # = 0.5975451
+adjusted_kur = kurtosis(mydata) + (6/(N+1)) # = -0.0679548
+
+skew_with_se = skewness(mydata) / v_skew # = 0.4558355
+kur_with_se = kurtosis(mydata) / v_kur # = -0.2804042
 
 standard_normal_dist_quantile = qnorm(1-alpha/2) # = 1.959964
 
