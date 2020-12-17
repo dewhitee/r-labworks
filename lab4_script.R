@@ -60,6 +60,8 @@ lines(newy_yz, conf_interval[,3],col="blue", lty=2)
 
 cor_xy = cor.test(x, y) 
 cor_xy
+cor_yx = cor.test(y, x)
+cor_yx
 cor_xz = cor.test(x, z)
 cor_xz
 cor_yz = cor.test(y, z)
