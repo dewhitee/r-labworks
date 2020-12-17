@@ -31,7 +31,6 @@ abline(h=mean(res)-3*sd(res), col="blue")
 abline(h=mean(res)+3*sd(res), col="blue")
 
 # Find outliers
-
 get_without_outliers <- function(data, resids) {
   return(subset(data, resids > mean(resids)-2*sd(resids) & resids < mean(resids)+2*sd(resids)))
 }
@@ -54,11 +53,17 @@ plot_new_resids <- function(newreg, i) {
 }
 
 reggress_model <- function(prev_dat, prev_y, prev_res, index) {
+  print(paste("Index", index))
   new_dat = get_without_outliers(prev_dat, prev_res)
   new_y = get_without_outliers(prev_y, prev_res)
   new_reg = lm(new_y ~ ., data=new_dat)
-  summary(new_reg)
-  anova(new_reg)
+  print(paste("Removed", length(prev_y) - length(new_y), "observations."))
+  print(summary(new_reg))
+  anova_result = anova(new_reg)
+  print(anova_result)
+  print(paste("Residuals sum sq =", tail(anova_result$`Sum Sq`, 1)))
+  print(paste("Residualts df =", tail(anova_result$Df, 1)))
+  print(paste("SEE =", sqrt(tail(anova_result$`Sum Sq`,1)/tail(anova_result$Df, 1))))
   new_res = plot_new_resids(new_reg, index)
   return(list("new_dat" = new_dat, "new_y" = new_y, "new_res" = new_res))
 }
@@ -71,6 +76,18 @@ model2 = reggress_model(model1$new_dat, model1$new_y, model1$new_res, 2)
 model3 = reggress_model(model2$new_dat, model2$new_y, model2$new_res, 3)
 model4 = reggress_model(model3$new_dat, model3$new_y, model3$new_res, 4)
 model5 = reggress_model(model4$new_dat, model4$new_y, model4$new_res, 5)
+
+model5_dat_no_x2 = model5$new_dat[,c("X1","X3","X4","X5","X6","X7","X8")]
+model6 = reggress_model(model5_dat_no_x2, model5$new_y, model5$new_res, 6)
+
+model5_dat_no_x2x5 = model5$new_dat[,c("X1","X3","X4","X6","X7","X8")]
+model7 = reggress_model(model5_dat_no_x2x5, model5$new_y, model5$new_res, 7)
+
+model5_dat_no_x2x5x7 = model5$new_dat[,c("X1","X3","X4","X6","X8")]
+model8 = reggress_model(model5_dat_no_x2x5x7, model5$new_y, model5$new_res, 8)
+
+model5_dat_no_x2x5x7x8 = model5$new_dat[,c("X1","X3","X4","X6")]
+model9 = reggress_model(model5_dat_no_x2x5x7x8, model5$new_y, model5$new_res, 9)
 
 ################################################
 ############ NON-LINEAR MODEL
