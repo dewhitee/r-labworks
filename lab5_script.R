@@ -75,12 +75,16 @@ abline(h=mean(res_y_x2)+3*sd(res_y_x2), col="blue")
 a = 3 
 b = 8
 c = 17
+d = 19
+e = 20
+f = 21
+g = 22
 
-new = data.frame(x1 = c(a, b, c))
+new = data.frame(x1 = c(a, b, c, d, e, f, g))
 predict(reg,  newdata = new, 
         se.fit=TRUE, interval="confidence", level=0.95)
 
-predict(reg_y_x2, newdata = data.frame(x2 = c(a, b, c)), 
+predict(reg_y_x2, newdata = data.frame(x2 = c(a, b, c, d, e, f, g)), 
         se.fit=TRUE, interval="confidence", level=0.95)
 
 
