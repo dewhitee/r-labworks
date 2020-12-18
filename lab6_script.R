@@ -62,7 +62,7 @@ reggress_model <- function(prev_dat, prev_y, prev_res, index) {
   anova_result = anova(new_reg)
   print(anova_result)
   print(paste("Residuals sum sq =", tail(anova_result$`Sum Sq`, 1)))
-  print(paste("Residualts df =", tail(anova_result$Df, 1)))
+  print(paste("Residuals df =", tail(anova_result$Df, 1)))
   print(paste("SEE =", sqrt(tail(anova_result$`Sum Sq`,1)/tail(anova_result$Df, 1))))
   new_res = plot_new_resids(new_reg, index)
   return(list("new_dat" = new_dat, "new_y" = new_y, "new_res" = new_res))
@@ -94,6 +94,17 @@ model9 = reggress_model(model5_dat_no_x2x5x7x8, model5$new_y, model5$new_res, 9)
 
 nlreg = lm(y ~ I(x1^2) + I(x2^2), data=dat)
 summary(nlreg)
+nlreg_anova = anova(nlreg)
+
+nlreg_updated = lm(model9$new_y ~ I(model9$new_dat$X1^2) + I(model9$new_dat$X3^2), data=model9$new_dat)
+summary(nlreg_updated)
+nlreg_updated_anova = anova(nlreg_updated)
+nlreg_updated_ess = sum(nlreg_updated_anova$`Sum Sq`[1:2])
+
+logreg = lm(model9$new_y ~ I(log10(model9$new_dat$X1)), data=model9$new_dat)
+summary(logreg)
+logreg_anova = anova(logreg)
+logreg_ess = sum(logreg_anova$`Sum Sq`)
 
 ################################################
 ############ STEPWISE
