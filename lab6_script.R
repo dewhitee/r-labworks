@@ -2,6 +2,25 @@
 ### READ DATA
 dat = read.csv("V01.csv", sep=";")
 
+#dimas_dat = read.csv("V05.csv", sep=";")
+#dimas_y = dimas_dat$EXPORT_Y
+#dimas_dat = dimas_dat[,-1]
+#dimas_reg = lm(dimas_y ~ ., data=dimas_dat)
+#summary(dimas_reg)
+#anova(dimas_reg)
+#dimas_res = resid(dimas_reg)
+#plot(dimas_res, ylim=c(mean(dimas_res)-3*sd(dimas_res), mean(dimas_res)+3*sd(dimas_res)))
+#abline(h=mean(dimas_res), col="red", lwd=2)
+#abline(h=mean(dimas_res)-sd(dimas_res), col="darkgreen")
+#abline(h=mean(dimas_res)+sd(dimas_res), col="darkgreen")
+
+#abline(h=mean(dimas_res)-2*sd(dimas_res), col="green")
+#abline(h=mean(dimas_res)+2*sd(dimas_res), col="green")
+
+#abline(h=mean(dimas_res)-3*sd(dimas_res), col="blue")
+#abline(h=mean(dimas_res)+3*sd(dimas_res), col="blue")
+
+
 y = dat$Y
 x1 = dat$X1
 x2 = dat$X2
@@ -113,6 +132,18 @@ model8 = reggress_model(model4_dat_no_x2x5x7, model4$new_y, model4$new_res, 8, F
 model4_dat_no_x2x5x7x8 = model4$new_dat[,c("X1","X3","X4","X6")]
 #model5_dat_no_x2x5x7x8 = model5$new_dat[,c("X1","X3","X4","X6")]
 model9 = reggress_model(model4_dat_no_x2x5x7x8, model4$new_y, model4$new_res, 9, FALSE)
+
+model4_dat_no_x5 = model4$new_dat[,c("X1","X2","X3","X4","X6","X7","X8")]
+model10 = reggress_model(model4_dat_no_x5, model4$new_y, model4$new_res, 10, FALSE)
+
+model4_dat_no_x5x7 = model4$new_dat[,c("X1","X2","X3","X4","X6","X8")]
+model11 = reggress_model(model4_dat_no_x5x7, model4$new_y, model4$new_res, 11, FALSE)
+
+model4_dat_no_x5x7x8 = model4$new_dat[,c("X1","X2","X3","X4","X6")]
+model12 = reggress_model(model4_dat_no_x5x7x8, model4$new_y, model4$new_res, 12, FALSE)
+
+model4_dat_no_x5x7x8x2 = model4$new_dat[,c("X1","X3","X4","X6")]
+model13 = reggress_model(model4_dat_no_x5x7x8x2, model4$new_y, model4$new_res, 13, FALSE)
 
 ################################################
 ############ NON-LINEAR MODEL
