@@ -1,10 +1,4 @@
 
-
-dat = read.csv("V01.csv", sep=";")
-
-y = dat$Y
-xs = dat[-ncol(dat)]
-
 ### LOAD PACKAGES & FUNCTIONS
 install.packages(c("smooth", "Mcomp", "TTR")) # download packages
 
@@ -28,8 +22,13 @@ errors = function(actual, predicted){
 ##################################################
 ### dat - loaded data set 
 
+dat = read.csv("V01.csv", sep=";")
+
+y = dat$Y
+xs = dat[-ncol(dat)]
+
 # Create time series of your data
-#tsdat = ts(dat) 	# only if necessary
+tsdat = ts(dat) 	# only if necessary
 
 # Plot data
 plot.ts(tsdat)

@@ -2,25 +2,6 @@
 ### READ DATA
 dat = read.csv("V01.csv", sep=";")
 
-#dimas_dat = read.csv("V05.csv", sep=";")
-#dimas_y = dimas_dat$EXPORT_Y
-#dimas_dat = dimas_dat[,-1]
-#dimas_reg = lm(dimas_y ~ ., data=dimas_dat)
-#summary(dimas_reg)
-#anova(dimas_reg)
-#dimas_res = resid(dimas_reg)
-#plot(dimas_res, ylim=c(mean(dimas_res)-3*sd(dimas_res), mean(dimas_res)+3*sd(dimas_res)))
-#abline(h=mean(dimas_res), col="red", lwd=2)
-#abline(h=mean(dimas_res)-sd(dimas_res), col="darkgreen")
-#abline(h=mean(dimas_res)+sd(dimas_res), col="darkgreen")
-
-#abline(h=mean(dimas_res)-2*sd(dimas_res), col="green")
-#abline(h=mean(dimas_res)+2*sd(dimas_res), col="green")
-
-#abline(h=mean(dimas_res)-3*sd(dimas_res), col="blue")
-#abline(h=mean(dimas_res)+3*sd(dimas_res), col="blue")
-
-
 y = dat$Y
 x1 = dat$X1
 x2 = dat$X2
