@@ -22,19 +22,20 @@ errors = function(actual, predicted){
 ##################################################
 ### dat - loaded data set 
 
-dat = read.csv("V01.csv", sep=";")
-
-y = dat$Y
-xs = dat[-ncol(dat)]
+dat = AirPassengers
 
 # Create time series of your data
-tsdat = ts(dat) 	# only if necessary
+#tsdat = ts(dat) 	# only if necessary
+tsdat = dat
 
 # Plot data
-plot.ts(tsdat)
+plot.ts(tsdat, xlab="Year", ylab="Passenger count")
+
+# Plot data with x axis as years
+#plot.ts(dat)
 
 # Boxplot
-boxplot(tsdat ~ cycle(tsdat))
+boxplot(tsdat ~ cycle(tsdat), xlab="Month", ylab="Passenger count")
 
 ### Autocorrelation coefficient
 
@@ -43,7 +44,7 @@ pacfRes = pacf(tsdat)  # partial autocorrelation
 
 ### MOVING AVERAGE
 
-plot.ts(tsdat)
+plot.ts(tsdat, xlab="Year", ylab="Passenger count")
 
 tsdatSMA3 = SMA(tsdat,n=3)	# lag 3
 tsdatSMA5 = SMA(tsdat,n=5)	# lag 5
@@ -57,21 +58,21 @@ lines(tsdatSMA10, col="blue")
 N = length(as.numeric(tsdat))
 
 # SMA (last 10 observations)
-sm = sma(tsdat, h=10, holdout = TRUE, silent=FALSE,interval="l")
-forecast(sm)
-fc = forecast(sm)$forecast
+sm1 = sma(tsdat, h=10, holdout = TRUE, silent=FALSE,interval="l")
+forecast(sm1)
+fc1 = forecast(sm1)$forecast
 
-errors(as.numeric(tsdat)[(N-9):N], fc) # analysis of SMA model
+errors(as.numeric(tsdat)[(N-9):N], fc1) # analysis of SMA model
 
 
 # SMA (the last observation)
-sm = sma(tsdat, h=1, holdout = TRUE, silent=FALSE,interval="l")
-forecast(sm)
-fc = forecast(sm)$forecast
-forecast(sm)$lower[1]
-forecast(sm)$upper[1]
+sm2 = sma(tsdat, h=1, holdout = TRUE, silent=FALSE,interval="l")
+forecast(sm2)
+fc2 = forecast(sm2)$forecast
+forecast(sm2)$lower[1]
+forecast(sm2)$upper[1]
 
-errors(as.numeric(tsdat)[N], fc) # analysis of SMA model
+errors(as.numeric(tsdat)[N], fc2) # analysis of SMA model
 
 
 
