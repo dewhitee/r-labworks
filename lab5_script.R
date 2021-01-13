@@ -1,6 +1,8 @@
 ### READ DATA
 dat = read.csv("Data_LW_5.csv")
 
+alpha = 0.05
+
 ### TAKE YOUR VARIANT DATA
 y = dat$DOC
 x1 = dat$DPI

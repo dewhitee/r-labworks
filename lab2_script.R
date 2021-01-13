@@ -40,10 +40,10 @@ ks_val_print <- function(ksresult, distname) {
     cat("K.S (test value) for", distname, "is", val, "and is NOT in the acceptance range (", aregion,")\n")
   }
   
-  if (ksresult$p.value < aregion) {
-    cat("Pvalue for", distname, "is", ksresult$p.value, "and is in the acceptance range (", aregion,")\n")
+  if (ksresult$p.value > alpha) {
+    cat("Pvalue for", distname, "is", ksresult$p.value, "and is more than alpha (", alpha,")\n")
   } else {
-    cat("Pvalue for", distname, "is", ksresult$p.value, "and is NOT in the acceptance range (", aregion,")\n")
+    cat("Pvalue for", distname, "is", ksresult$p.value, "and is less than alpha (", alpha,")\n")
   }
   ksresult
 }

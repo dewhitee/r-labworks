@@ -7,6 +7,7 @@ mydata
 
 plot(mydata, type="l")
 
+h = hist(mydata)
 xfit = seq(min(mydata ),max(mydata ),length=100) 
 yfit = dnorm(xfit,mean=mean(mydata ),sd=sd(mydata )) 
 yfit = yfit*diff(h$mids[1:2])*length(yfit)
