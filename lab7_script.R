@@ -54,6 +54,9 @@ lines(tsdatSMA3, col="red")
 lines(tsdatSMA5, col="green")
 lines(tsdatSMA10, col="blue")
 
+legend(1, 1, legend=c("Lag 3", "Lag 5", "Lag 10"), col=c("red", "green", "blue"),
+                       lty=1:2, cex=0.8)
+
 ### SIMPLE MOVING AVERAGE (built-in functions)
 N = length(as.numeric(tsdat))
 
@@ -61,6 +64,9 @@ N = length(as.numeric(tsdat))
 sm1 = sma(tsdat, h=10, holdout = TRUE, silent=FALSE,interval="l")
 forecast(sm1)
 fc1 = forecast(sm1)$forecast
+
+# Actual value
+as.numeric(tsdat)[(N-9):N]
 
 errors(as.numeric(tsdat)[(N-9):N], fc1) # analysis of SMA model
 
@@ -71,6 +77,9 @@ forecast(sm2)
 fc2 = forecast(sm2)$forecast
 forecast(sm2)$lower[1]
 forecast(sm2)$upper[1]
+
+# Actual value
+as.numeric(tsdat)[N]
 
 errors(as.numeric(tsdat)[N], fc2) # analysis of SMA model
 
@@ -90,6 +99,9 @@ summary(armod)
 # Forecast
 new = data.frame(vdat_lags = as.numeric(tsdat)[N])
 frct = predict(armod, newdata =new, interval="confidence", level=0.95)
+
+# Actual value
+as.numeric(tsdat)[N]
 
 errors(as.numeric(tsdat)[N], frct[1]) # analysis of SMA model
 

@@ -1,6 +1,10 @@
 # x - 1st set
 # y - 2nd set
 # mysample_index = sample(seq_len(nrow(mydata), size = nrow(mydata)))
+mydata = read.csv("mydata2_21var.csv", header=F)
+
+mydata = mydata[, 1]
+
 x = mydata[1:25]
 y = mydata[26:50]
 

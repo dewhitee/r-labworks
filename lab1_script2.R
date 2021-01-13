@@ -27,12 +27,12 @@ rm(list = ls())	# clean all objects from the workspace
 
 ########## LOAD DATA
 
-sunspot.year = read.csv("sunspot_year.csv")   # read data from CSV file
+#sunspot.year = read.csv("sunspot_year.csv")   # read data from CSV file
 
 # Since it is an example, the data set is taken from the basic package ?datasets?,  
 # so you can work with the set just using it name (without reading from the CSV)
 
-sunspot.year
+#sunspot.year
 
 ########## PLOTS
 

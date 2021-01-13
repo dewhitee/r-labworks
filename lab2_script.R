@@ -6,6 +6,12 @@ mydata = read.csv("mydata2_21var.csv", header=F)
 mydata = mydata[, 1]
 mydata
 
+# Variance for skewness and kurtosis (from first lab)
+N = length(mydata)
+
+v_skew = sqrt(6*N*(N-1) / ((N-2)*(N+1)*(N+3))) # must be nearly equal to others
+v_kur = sqrt(4*(N^2-1)*v_skew^2 / ((N-3)*(N+5))) # must be less than one
+
 ########## KOLMOGOROV-SMIRNOV TEST
 
 # Null hypothesis is that mydata distribution is NOT SO FAR from (normal/exp/gamma/unif/chi)
