@@ -51,46 +51,66 @@
 alpha = 0.05
 
 # Reading data
-dat = read.csv("mydata2_21var.csv", sep=";", header=F)
+dat = read.csv("2_1.csv")
 
 # Adjust data if necessary
-dat = dat[, 1]
+#dat = dat[, 1]
 dat
 
 N = length(dat)
 
+v1 = dat$V1
+v1N = length(v1)
+
+v2 = dat$V2
+v2N = length(v2)
+
+
 # Useful functions
 source("F:/dev/R/Labworks/exam_helpers_script.R")
 
-# Plotting
-plot(dat, xlab="x", ylab="y", main="Title of the plot")
-
 # Building histogram
-hist(dat)
-
-# add more lines on the histogram (for example, to show the normal distribution red line)
-#xfit = seq(min(mydata), max(mydata), length=100) 
-#yfit = dnorm(xfit, mean=mean(mydata), sd=sd(mydata)) 
-#yfit = yfit * diff(h$mids[1:2]) * length(yfit)
-#h = hist(mydata, ylim=c(0, max(yfit)))
-#lines(xfit, yfit, col="red", lwd=2)
+#hist(dat[, 1])
+hist(v1)
+hist(v2)
 
 # Summarizing
 summary(dat)
-sd(dat)
-var(dat)
+summary(v1)
+summary(v2)
 
-# Run my variant test function
+#sd(dat)
+#var(dat)
 
-ks_test_for_normal(dat, N)
-ks_test_for_gamma(dat, N)
-ks_test_for_exponential(dat, N)
-ks_test_for_chisquare(dat, N)
+# T-Student
+st = t.test(v1, v2, alternative = "two.sided", var.equal = FALSE)
 
-# Confidence interval
-acceptance_region = ks_acceptance_region()
+# Student Confidence interval
+st_critical_value_l = qt(alpha/2, st$parameter) # -1.981872
+st_critical_value_r = qt(1-alpha/2, st$parameter) # 1.981872
 
 
-###### ...
+# Wilcoxon-Mann-Whitney test for homogeneity
+wt = wilcox.test(v1, v2, alternative = "two.sided", correct = FALSE)
+attributes(wt)	# get names of all test parameters
+
+wt$statistic # 3987
+
+wmw_mean = (v1N*v2N)/2 # 5000
+wmw_sd = sqrt((1/12)*v1N*v2N*(v1N+v2N+1)) # 409.2676
+wmw_standardized_zvalue = (wt$statistic - wmw_mean) / wmw_sd # -2.475153
+wmw_acceptance_region = qnorm(1-alpha/2) # (-1.959964; +1.959964)
+
+# Kolmogorov
+kt = ks.test(v1, v2, alternative = "two.side")
+
+kt$statistic # 0.31
+kt$p.value # 0.000134
+
+ks_tval = kt$statistic * sqrt((v1N * v2N)/(v1N + v2N)) # 2.192031
+ks_acceptance_reg = sqrt(-(1/2)*log(alpha/2)) # 1.358102
+
+### Boxplot
+boxplot(v1, v2, names=c("v1", "v2"))
 
 
